@@ -13,22 +13,22 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/produtos")
 public class ProdutoController {
     private final ProdutoService service;   //Injeção de Dependencia
 
-    @GetMapping("produtos")    //Lista todos os produtos
+    @GetMapping()    //Lista todos os produtos
     public List<ProdutoEntity> mostrarTodos() {
         return service.findAll();
     }
 
-    @PutMapping("/create")
+    @PutMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public ProdutoEntity criarProduto(@RequestBody ProdutoDto dto) {
     return service.criarProduto(dto);
     }
 
-    @PostMapping("/post/{id}")
+    @PostMapping("/{id}")
     public ResponseEntity<String> alterarProduto(@PathVariable int id, @RequestBody ProdutoDto dto) {
         return service.alterarTudo(id,dto);
     }
